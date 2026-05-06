@@ -1,7 +1,9 @@
 export type ArticleBlock =
   | { type: "paragraph"; text: string }
-  | { type: "heading"; text: string }
-  | { type: "quote"; text: string; cite?: string };
+  | { type: "heading"; text: string; level?: 2 | 3 }
+  | { type: "quote"; text: string; cite?: string }
+  | { type: "list"; items: string[]; ordered?: boolean }
+  | { type: "image"; src: string; alt: string; caption?: string };
 
 export type BlogArticle = {
   slug: string;
@@ -124,9 +126,12 @@ export const heroArticles: BlogArticle[] = [
   },
 ];
 
-export const categories = ["All", "Design", "Code", "Product", "Notes", "Projects"];
+import { suujikatAiDaily20260506 } from "./articles/suujikat-ai-daily-2026-05-06";
+
+export const categories = ["All", "AI", "Design", "Code", "Product", "Notes", "Projects"];
 
 export const posts: BlogArticle[] = [
+  suujikatAiDaily20260506,
   ...heroArticles,
   {
     slug: "what-belongs-on-a-personal-blog",

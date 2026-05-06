@@ -6,6 +6,10 @@ import { site, type ArticleBlock, type BlogArticle } from "../data/blog";
 
 function ArticleBodyBlock({ block }: { block: ArticleBlock }) {
   if (block.type === "heading") {
+    if (block.level === 3) {
+      return <h3>{block.text}</h3>;
+    }
+
     return <h2>{block.text}</h2>;
   }
 
@@ -14,6 +18,27 @@ function ArticleBodyBlock({ block }: { block: ArticleBlock }) {
       <blockquote className="border-l-4 border-neutral-300 pl-4 italic text-neutral-600">
         "{block.text}"{block.cite ? ` - ${block.cite}` : ""}
       </blockquote>
+    );
+  }
+
+  if (block.type === "list") {
+    const ListTag = block.ordered ? "ol" : "ul";
+
+    return (
+      <ListTag className={`space-y-2 pl-5 ${block.ordered ? "list-decimal" : "list-disc"}`}>
+        {block.items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ListTag>
+    );
+  }
+
+  if (block.type === "image") {
+    return (
+      <figure className="space-y-2">
+        <ImageWithFallback src={block.src} alt={block.alt} className="w-full rounded-xl object-cover" />
+        {block.caption && <figcaption className="text-sm text-neutral-500">{block.caption}</figcaption>}
+      </figure>
     );
   }
 
