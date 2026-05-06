@@ -1,0 +1,109 @@
+import { ArrowLeft, Bookmark, Facebook, Link2, Share2, Twitter } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Badge } from "./ui/badge";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { site, type ArticleBlock, type BlogArticle } from "../data/blog";
+
+function ArticleBodyBlock({ block }: { block: ArticleBlock }) {
+  if (block.type === "heading") {
+    return <h2>{block.text}</h2>;
+  }
+
+  if (block.type === "quote") {
+    return (
+      <blockquote className="border-l-4 border-neutral-300 pl-4 italic text-neutral-600">
+        "{block.text}"{block.cite ? ` - ${block.cite}` : ""}
+      </blockquote>
+    );
+  }
+
+  return <p>{block.text}</p>;
+}
+
+export function ArticlePage({ article, onBack }: { article: BlogArticle; onBack: () => void }) {
+  return (
+    <div className="min-h-screen bg-neutral-50">
+      <div className="relative overflow-hidden">
+        <ImageWithFallback
+          src={article.img}
+          alt=""
+          className="absolute inset-0 h-full w-full scale-125 object-cover blur-3xl"
+        />
+        <div className="absolute inset-0 bg-black/55" />
+
+        <div className="relative">
+          <header className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-6 text-white">
+            <button onClick={onBack} className="flex items-center gap-2 text-sm text-white/85 hover:text-white">
+              <ArrowLeft className="h-4 w-4" /> Back
+            </button>
+            <nav className="hidden items-center gap-5 text-sm text-white/85 md:flex">
+              {site.nav.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer" : undefined}
+                  className="hover:text-white"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+            <div className="ml-auto flex items-center gap-2">
+              <button className="rounded-full border border-white/20 bg-white/10 p-2 text-white backdrop-blur hover:bg-white/20">
+                <Bookmark className="h-4 w-4" />
+              </button>
+              <button className="rounded-full border border-white/20 bg-white/10 p-2 text-white backdrop-blur hover:bg-white/20">
+                <Share2 className="h-4 w-4" />
+              </button>
+            </div>
+          </header>
+
+          <div className="mx-auto max-w-4xl px-6 pb-10 pt-10 text-white">
+            <Badge className="bg-white/15 text-white backdrop-blur hover:bg-white/25">{article.tag}</Badge>
+            <h1 className="mt-4 leading-tight text-white">{article.title}</h1>
+            <p className="mt-4 max-w-2xl text-white/85">{article.excerpt}</p>
+            <div className="mt-6 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Avatar className="h-10 w-10 ring-2 ring-white/30">
+                  {article.avatar && <AvatarImage src={article.avatar} />}
+                  <AvatarFallback>{article.author.slice(0, 2)}</AvatarFallback>
+                </Avatar>
+                <div className="text-sm">
+                  <div>{article.author}</div>
+                  <div className="text-white/70">
+                    {article.date} · {article.read}
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-white/80">
+                <span className="hidden text-sm sm:inline">Share</span>
+                <button className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">
+                  <Twitter className="h-4 w-4" />
+                </button>
+                <button className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">
+                  <Facebook className="h-4 w-4" />
+                </button>
+                <button className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">
+                  <Link2 className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="mx-auto max-w-5xl px-6 pb-16">
+            <div className="overflow-hidden rounded-2xl shadow-2xl">
+              <ImageWithFallback src={article.img} alt={article.title} className="h-[460px] w-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <article className="mx-auto max-w-3xl space-y-6 px-6 py-16 text-neutral-800">
+        {article.body.map((block, index) => (
+          <ArticleBodyBlock key={`${article.slug}-${index}`} block={block} />
+        ))}
+      </article>
+    </div>
+  );
+}
