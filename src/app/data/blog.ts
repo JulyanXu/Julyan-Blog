@@ -33,7 +33,7 @@ export const site = {
   footerLinks: [
     { label: "Archive", href: "#latest-notes" },
     { label: "About", href: "#about" },
-    { label: "Contact", href: "mailto:hello@example.com" },
+    { label: "Projects", href: "https://github.com/JulyanXu?tab=repositories", external: true },
   ],
 };
 

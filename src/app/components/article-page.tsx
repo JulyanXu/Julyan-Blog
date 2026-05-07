@@ -1,4 +1,5 @@
-import { ArrowLeft, Bookmark, Facebook, Link2, Share2, Twitter } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, Bookmark, Check, Facebook, Link2, Share2, Twitter } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
@@ -45,7 +46,54 @@ function ArticleBodyBlock({ block }: { block: ArticleBlock }) {
   return <p>{block.text}</p>;
 }
 
-export function ArticlePage({ article, onBack }: { article: BlogArticle; onBack: () => void }) {
+export function ArticlePage({
+  article,
+  articleUrl,
+  isBookmarked,
+  onBack,
+  onToggleBookmark,
+}: {
+  article: BlogArticle;
+  articleUrl: string;
+  isBookmarked: boolean;
+  onBack: () => void;
+  onToggleBookmark: () => void;
+}) {
+  const [shareMessage, setShareMessage] = useState("");
+
+  const showShareMessage = (message: string) => {
+    setShareMessage(message);
+    window.setTimeout(() => setShareMessage(""), 1800);
+  };
+
+  const copyArticleUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(articleUrl);
+      showShareMessage("Link copied");
+    } catch {
+      showShareMessage("Copy failed");
+    }
+  };
+
+  const shareArticle = async () => {
+    const shareData = {
+      title: article.title,
+      text: article.excerpt,
+      url: articleUrl,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        return;
+      }
+
+      await copyArticleUrl();
+    } catch {
+      showShareMessage("Share canceled");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-neutral-50">
       <div className="relative overflow-hidden">
@@ -75,10 +123,21 @@ export function ArticlePage({ article, onBack }: { article: BlogArticle; onBack:
               ))}
             </nav>
             <div className="ml-auto flex items-center gap-2">
-              <button className="rounded-full border border-white/20 bg-white/10 p-2 text-white backdrop-blur hover:bg-white/20">
+              <button
+                onClick={onToggleBookmark}
+                aria-pressed={isBookmarked}
+                aria-label={isBookmarked ? "Remove bookmark" : "Bookmark article"}
+                className={`rounded-full border border-white/20 p-2 text-white backdrop-blur hover:bg-white/20 ${
+                  isBookmarked ? "bg-white/25" : "bg-white/10"
+                }`}
+              >
                 <Bookmark className="h-4 w-4" />
               </button>
-              <button className="rounded-full border border-white/20 bg-white/10 p-2 text-white backdrop-blur hover:bg-white/20">
+              <button
+                onClick={shareArticle}
+                aria-label="Share article"
+                className="rounded-full border border-white/20 bg-white/10 p-2 text-white backdrop-blur hover:bg-white/20"
+              >
                 <Share2 className="h-4 w-4" />
               </button>
             </div>
@@ -102,15 +161,31 @@ export function ArticlePage({ article, onBack }: { article: BlogArticle; onBack:
                 </div>
               </div>
               <div className="flex items-center gap-2 text-white/80">
-                <span className="hidden text-sm sm:inline">Share</span>
-                <button className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">
+                <span className="hidden text-sm sm:inline">{shareMessage || "Share"}</span>
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(articleUrl)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Share on Twitter"
+                  className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20"
+                >
                   <Twitter className="h-4 w-4" />
-                </button>
-                <button className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">
+                </a>
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Share on Facebook"
+                  className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20"
+                >
                   <Facebook className="h-4 w-4" />
-                </button>
-                <button className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">
-                  <Link2 className="h-4 w-4" />
+                </a>
+                <button
+                  onClick={copyArticleUrl}
+                  aria-label="Copy article link"
+                  className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20"
+                >
+                  {shareMessage === "Link copied" ? <Check className="h-4 w-4" /> : <Link2 className="h-4 w-4" />}
                 </button>
               </div>
             </div>

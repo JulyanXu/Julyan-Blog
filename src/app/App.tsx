@@ -2,14 +2,10 @@ import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
   ChevronDown,
-  Facebook,
   Github,
   Globe,
-  Instagram,
-  MessageCircle,
-  Music2,
   Search,
-  Twitter,
+  X,
 } from "lucide-react";
 import { Badge } from "./components/ui/badge";
 import { Button } from "./components/ui/button";
@@ -18,6 +14,17 @@ import { Separator } from "./components/ui/separator";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { ArticlePage } from "./components/article-page";
 import { articleBySlug, categories, heroArticles, posts, site, type BlogArticle } from "./data/blog";
+
+type SortMode = "latest" | "oldest";
+
+function getArticleTimestamp(post: BlogArticle) {
+  const parsed = Date.parse(post.date);
+  return Number.isNaN(parsed) ? 0 : parsed;
+}
+
+function getArticleUrl(slug: string) {
+  return `${window.location.origin}${window.location.pathname}#article/${encodeURIComponent(slug)}`;
+}
 
 function HeroWithNav({
   onOpen,
@@ -200,13 +207,19 @@ function BlogGrid({
   filteredPosts,
   activeCategory,
   query,
+  sortMode,
   onCategoryChange,
+  onQueryChange,
+  onSortModeChange,
   onOpen,
 }: {
   filteredPosts: BlogArticle[];
   activeCategory: string;
   query: string;
+  sortMode: SortMode;
   onCategoryChange: (category: string) => void;
+  onQueryChange: (query: string) => void;
+  onSortModeChange: (mode: SortMode) => void;
   onOpen: (slug: string) => void;
 }) {
   return (
@@ -216,12 +229,47 @@ function BlogGrid({
           <h2>Latest Notes</h2>
           <p className="text-sm text-muted-foreground">Essays, project logs, and working notes from this blog.</p>
         </div>
-        <button className="hidden items-center gap-1 text-sm text-muted-foreground hover:text-foreground md:inline-flex">
-          Sort: Latest <ChevronDown className="h-4 w-4" />
+        <button
+          onClick={() => onSortModeChange(sortMode === "latest" ? "oldest" : "latest")}
+          className="hidden items-center gap-1 text-sm text-muted-foreground hover:text-foreground md:inline-flex"
+        >
+          Sort: {sortMode === "latest" ? "Latest" : "Oldest"} <ChevronDown className="h-4 w-4" />
         </button>
+      </div>
+      <div className="mb-5 md:hidden">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <input
+            value={query}
+            onChange={(event) => onQueryChange(event.target.value)}
+            placeholder="Search essays..."
+            className="h-10 w-full rounded-full border bg-white pl-9 pr-10 text-sm outline-none focus:border-neutral-400"
+          />
+          {query && (
+            <button
+              onClick={() => onQueryChange("")}
+              aria-label="Clear search"
+              className="absolute right-2 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full text-muted-foreground hover:bg-muted"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
+        </div>
       </div>
       <div className="mb-8">
         <CategoryTabs activeCategory={activeCategory} onCategoryChange={onCategoryChange} />
+      </div>
+      <div className="mb-5 flex items-center justify-between gap-3 text-xs text-muted-foreground">
+        <span>
+          Showing {filteredPosts.length} of {posts.length} posts
+          {activeCategory !== "All" ? ` in ${activeCategory}` : ""}
+        </span>
+        <button
+          onClick={() => onSortModeChange(sortMode === "latest" ? "oldest" : "latest")}
+          className="inline-flex items-center gap-1 rounded-full border bg-white px-3 py-1.5 hover:text-foreground md:hidden"
+        >
+          {sortMode === "latest" ? "Latest" : "Oldest"} <ChevronDown className="h-3.5 w-3.5" />
+        </button>
       </div>
       {filteredPosts.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -286,11 +334,6 @@ function Promo({ onCategoryChange }: { onCategoryChange: (category: string) => v
 function Footer({ onCategoryChange }: { onCategoryChange: (category: string) => void }) {
   const socialLinks = [
     { label: "GitHub", href: site.githubRepositoriesUrl, icon: Github },
-    { label: "Instagram", href: "#", icon: Instagram },
-    { label: "Twitter", href: "#", icon: Twitter },
-    { label: "Facebook", href: "#", icon: Facebook },
-    { label: "Messages", href: "#", icon: MessageCircle },
-    { label: "Music", href: "#", icon: Music2 },
   ];
 
   return (
@@ -309,7 +352,12 @@ function Footer({ onCategoryChange }: { onCategoryChange: (category: string) => 
             <ul className="space-y-2 text-sm text-neutral-400">
               {site.footerLinks.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="hover:text-white">
+                  <a
+                    href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noreferrer" : undefined}
+                    className="hover:text-white"
+                  >
                     {item.label}
                   </a>
                 </li>
@@ -350,14 +398,7 @@ function Footer({ onCategoryChange }: { onCategoryChange: (category: string) => 
         <Separator className="my-8 bg-neutral-800" />
         <div className="flex flex-col items-start justify-between gap-3 text-xs text-neutral-500 md:flex-row md:items-center">
           <div>©2026 {site.name}. All rights reserved.</div>
-          <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-white">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white">
-              Terms of Service
-            </a>
-          </div>
+          <div>Built and maintained by Julyan.</div>
         </div>
       </div>
     </footer>
@@ -368,23 +409,77 @@ export default function App() {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
   const [query, setQuery] = useState("");
+  const [sortMode, setSortMode] = useState<SortMode>("latest");
+  const [bookmarkedSlugs, setBookmarkedSlugs] = useState<Set<string>>(() => {
+    try {
+      return new Set(JSON.parse(localStorage.getItem("bookmarkedArticles") ?? "[]"));
+    } catch {
+      return new Set();
+    }
+  });
   const article = selectedSlug ? articleBySlug.get(selectedSlug) : null;
   const normalizedQuery = query.trim().toLowerCase();
+
+  useEffect(() => {
+    const syncArticleFromHash = () => {
+      const match = window.location.hash.match(/^#article\/(.+)$/);
+      setSelectedSlug(match ? decodeURIComponent(match[1]) : null);
+    };
+
+    syncArticleFromHash();
+    window.addEventListener("hashchange", syncArticleFromHash);
+    return () => window.removeEventListener("hashchange", syncArticleFromHash);
+  }, []);
+
   const filteredPosts = useMemo(() => {
-    return posts.filter((post) => {
-      const matchesCategory = activeCategory === "All" || post.tag === activeCategory;
-      const searchableText = `${post.title} ${post.excerpt} ${post.tag} ${post.author}`.toLowerCase();
-      return matchesCategory && (!normalizedQuery || searchableText.includes(normalizedQuery));
-    });
-  }, [activeCategory, normalizedQuery]);
+    return posts
+      .filter((post) => {
+        const matchesCategory = activeCategory === "All" || post.tag === activeCategory;
+        const searchableText = `${post.title} ${post.excerpt} ${post.tag} ${post.author}`.toLowerCase();
+        return matchesCategory && (!normalizedQuery || searchableText.includes(normalizedQuery));
+      })
+      .sort((a, b) => {
+        const result = getArticleTimestamp(b) - getArticleTimestamp(a);
+        return sortMode === "latest" ? result : -result;
+      });
+  }, [activeCategory, normalizedQuery, sortMode]);
 
   const open = (slug: string) => {
     setSelectedSlug(slug);
+    window.history.pushState(null, "", `#article/${encodeURIComponent(slug)}`);
     window.scrollTo({ top: 0 });
   };
 
+  const closeArticle = () => {
+    setSelectedSlug(null);
+    window.history.pushState(null, "", `${window.location.pathname}${window.location.search}`);
+    window.scrollTo({ top: 0 });
+  };
+
+  const toggleBookmark = (slug: string) => {
+    setBookmarkedSlugs((current) => {
+      const next = new Set(current);
+      if (next.has(slug)) {
+        next.delete(slug);
+      } else {
+        next.add(slug);
+      }
+
+      localStorage.setItem("bookmarkedArticles", JSON.stringify([...next]));
+      return next;
+    });
+  };
+
   if (article) {
-    return <ArticlePage article={article} onBack={() => setSelectedSlug(null)} />;
+    return (
+      <ArticlePage
+        article={article}
+        isBookmarked={bookmarkedSlugs.has(article.slug)}
+        articleUrl={getArticleUrl(article.slug)}
+        onBack={closeArticle}
+        onToggleBookmark={() => toggleBookmark(article.slug)}
+      />
+    );
   }
 
   return (
@@ -399,7 +494,10 @@ export default function App() {
         filteredPosts={filteredPosts}
         activeCategory={activeCategory}
         query={query}
+        sortMode={sortMode}
         onCategoryChange={setActiveCategory}
+        onQueryChange={setQuery}
+        onSortModeChange={setSortMode}
         onOpen={open}
       />
       <Promo onCategoryChange={setActiveCategory} />
