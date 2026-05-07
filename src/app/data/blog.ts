@@ -15,6 +15,7 @@ export type BlogArticle = {
   avatar?: string;
   date: string;
   read: string;
+  externalUrl?: string;
   body: ArticleBlock[];
 };
 
@@ -127,10 +128,12 @@ export const heroArticles: BlogArticle[] = [
 ];
 
 import { suujikatAiDaily20260506 } from "./articles/suujikat-ai-daily-2026-05-06";
+import { suujikatAiDaily20260507 } from "./articles/suujikat-ai-daily-2026-05-07";
 
 export const categories = ["All", "AI", "Design", "Code", "Product", "Notes", "Projects"];
 
 export const posts: BlogArticle[] = [
+  suujikatAiDaily20260507,
   suujikatAiDaily20260506,
   ...heroArticles,
   {

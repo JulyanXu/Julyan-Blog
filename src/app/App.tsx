@@ -158,9 +158,18 @@ function CategoryTabs({
 }
 
 function PostCard({ post, onOpen }: { post: BlogArticle; onOpen: (slug: string) => void }) {
+  const handleOpen = () => {
+    if (post.externalUrl) {
+      window.location.assign(post.externalUrl);
+      return;
+    }
+
+    onOpen(post.slug);
+  };
+
   return (
     <article
-      onClick={() => onOpen(post.slug)}
+      onClick={handleOpen}
       className="group flex cursor-pointer flex-col overflow-hidden rounded-xl border bg-white transition-shadow hover:shadow-md"
     >
       <div className="relative h-44 overflow-hidden">
