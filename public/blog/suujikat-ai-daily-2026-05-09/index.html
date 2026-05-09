@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SuuJiKat AI Daily｜2026-05-09</title>
+</head>
+<body style="margin:0;padding:0;background:#f6f6f3;color:#1f1f1f;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',Arial,sans-serif;">
+  <main style="max-width:680px;margin:0 auto;padding:28px 18px 48px;background:#fff;">
+    <section style="padding:26px 0 18px;border-bottom:1px solid #ece7df;">
+      <p style="margin:0 0 12px;color:#8a8178;font-size:14px;letter-spacing:.04em;">SuuJiKat AI Daily</p>
+      <h1 style="margin:0;color:#111;font-size:28px;line-height:1.32;font-weight:800;">不能只看 OpenAI 和 Claude：国内 AI 巨头正在抢另一半入口</h1>
+      <p style="margin:14px 0 0;color:#8a8178;font-size:14px;line-height:1.8;">2026-05-09 · 过去 24 小时 AIGC 大事件，每天更新</p>
+    </section>
+
+    <section style="margin:24px 0 18px;padding:18px;background:#f8f5ee;border-left:4px solid #222;border-radius:8px;">
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">今天这期我想把视角稍微拉回来一点：</p>
+      <p style="margin:0;font-size:20px;line-height:1.7;font-weight:800;">如果只看 OpenAI、Anthropic 和 Google，我们会漏掉 AI 竞争的另一半。</p>
+    </section>
+
+    <section style="margin:0 0 22px;">
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">过去一周，国内 AI 的信号非常密集：月之暗面继续融资，DeepSeek V4 进入 API，阿里 Qwen3.6 加速开源和开发者生态，字节 Seed 系列把语音、视频、3D 都推向生产场景，腾讯混元则在 agent 和 3D 世界模型上继续补位。</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">今天最值得看的不是“谁又发布了一个模型”，而是：</p>
+      <p style="margin:0;padding:16px 18px;background:#111;color:#fff;border-radius:10px;font-size:19px;line-height:1.75;font-weight:800;">AI 竞争正在变成两条路线同时推进：海外前沿模型往高风险系统和实时入口走，国内头部厂商则在开源、低成本、产品分发和多模态生产力上加速。</p>
+    </section>
+
+    <section style="margin:24px 0;padding:18px;background:#fbfbfa;border:1px solid #ece7df;border-radius:10px;">
+      <h2 style="margin:0 0 14px;font-size:20px;line-height:1.4;">今日目录</h2>
+      <p style="margin:0 0 8px;font-size:15px;line-height:1.8;">🌕 月之暗面被曝完成约 20 亿美元融资，Kimi 继续押注开放模型和 agent coding</p>
+      <p style="margin:0 0 8px;font-size:15px;line-height:1.8;">🔹 DeepSeek V4 进入 API，兼容 OpenAI 和 Anthropic 接口</p>
+      <p style="margin:0 0 8px;font-size:15px;line-height:1.8;">🟣 阿里 Qwen3.6 开源推进，重点转向 agentic coding 和真实开发者工作流</p>
+      <p style="margin:0 0 8px;font-size:15px;line-height:1.8;">🎬 字节 Seed2.0、Seedance 2.0、Seed3D 2.0 把 AI 推向内容生产流水线</p>
+      <p style="margin:0 0 8px;font-size:15px;line-height:1.8;">🧩 腾讯混元 Hy3 preview 与 HY-World 2.0：一个做实用 agent，一个做 3D 世界</p>
+      <p style="margin:0 0 8px;font-size:15px;line-height:1.8;">🔍 百度 ERNIE 5.0：搜索、数字人和应用分发仍然是大模型落地入口</p>
+      <p style="margin:0 0 8px;font-size:15px;line-height:1.8;">🛡️ 海外线索：OpenAI 继续推进实时语音和 cyber 模型，Anthropic 继续补算力</p>
+      <p style="margin:0;font-size:15px;line-height:1.8;">🔎 今天的一个判断：AI 日报不能只盯“最强模型”，还要看谁能进入真实场景</p>
+    </section>
+
+    <section style="margin:34px 0 0;">
+      <h2 style="margin:0 0 16px;padding:0 0 10px;border-bottom:2px solid #111;font-size:22px;line-height:1.45;">01｜月之暗面被曝完成约 20 亿美元融资，Kimi 继续押注开放模型和 agent coding</h2>
+      <h3 style="margin:18px 0 10px;font-size:17px;line-height:1.5;color:#111;">发生了什么</h3>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">TechCrunch 5 月 7 日报道，月之暗面 Moonshot AI 近期完成约 20 亿美元融资，估值约 200 亿美元。报道称，美团旗下 Long-Z Investment 领投，清华资本、中国移动、CPE 源峰等参与。</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">这条新闻和 Kimi K2.6 放在一起看更有意思。</p>
+      <p style="margin:0 0 16px;font-size:16px;line-height:1.9;">Kimi 官方页面把 K2.6 定位为面向 coding、long-horizon execution 和 agent swarm 的开放模型。它不是只强调聊天，而是强调“从代码到产品”“从一个人到多 agent 协同”。</p>
+      <p style="margin:18px 0;text-align:center;"><img src="assets/2026-05-09-suujikat-ai-daily/kimi-k26.png" alt="Kimi K2.6" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #eee;"></p>
+      <section style="margin:18px 0;padding:16px;background:#f7fbff;border-left:4px solid #3b82f6;border-radius:8px;">
+        <p style="margin:0 0 8px;color:#235aa6;font-size:14px;font-weight:700;">SuuJiKat 判断</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">月之暗面的关键不只是融资金额，而是它代表国内独立模型公司的一条路线：</p>
+        <p style="margin:0 0 12px;font-size:18px;line-height:1.75;font-weight:800;">用开放模型和开发者生态，去抢原本属于闭源大模型的 agent 工作流。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">如果 Kimi 这种模型能在代码、长任务和 agent 协同里稳定可用，它影响的不是普通问答，而是创作者和开发者的生产方式。</p>
+        <p style="margin:0;font-size:16px;line-height:1.9;">对 SuuJiKat 来说，这类模型值得持续实测：不是问它“会不会写文章”，而是看它能不能持续跑一个 Harmony 工作流，能不能拆任务、保留上下文、调用工具、最后产出可用结果。</p>
+      </section>
+      <p style="margin:14px 0 6px;color:#8a8178;font-size:14px;font-weight:700;">来源</p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://techcrunch.com/2026/05/07/chinas-moonshot-ai-raises-2b-at-20b-valuation-as-demand-for-open-source-ai-skyrockets/" style="color:#576b95;text-decoration:none;">TechCrunch - China’s Moonshot AI raises $2B at $20B valuation</a></p>
+      <p style="margin:0;font-size:14px;line-height:1.7;"><a href="https://www.kimi.com/ai-models/kimi-k2-6" style="color:#576b95;text-decoration:none;">Kimi - Kimi K2.6 official page</a></p>
+    </section>
+
+    <section style="margin:40px 0 0;">
+      <h2 style="margin:0 0 16px;padding:0 0 10px;border-bottom:2px solid #111;font-size:22px;line-height:1.45;">02｜DeepSeek V4 进入 API，兼容 OpenAI 和 Anthropic 接口</h2>
+      <h3 style="margin:18px 0 10px;font-size:17px;line-height:1.5;color:#111;">发生了什么</h3>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">DeepSeek 官方 API 文档显示，DeepSeek-V4 已在 4 月 24 日进入 API。</p>
+      <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">这次 API 支持两个模型：</p>
+      <p style="margin:0 0 8px;padding-left:14px;font-size:16px;line-height:1.85;">· <code style="padding:2px 5px;background:#f2f2f0;border-radius:4px;">deepseek-v4-pro</code></p>
+      <p style="margin:0 0 12px;padding-left:14px;font-size:16px;line-height:1.85;">· <code style="padding:2px 5px;background:#f2f2f0;border-radius:4px;">deepseek-v4-flash</code></p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">更值得注意的是，DeepSeek 文档明确提到，新模型同时支持 OpenAI ChatCompletions interface 和 Anthropic interface。</p>
+      <p style="margin:0 0 16px;font-size:16px;line-height:1.9;">另外，旧模型名 <code style="padding:2px 5px;background:#f2f2f0;border-radius:4px;">deepseek-chat</code> 和 <code style="padding:2px 5px;background:#f2f2f0;border-radius:4px;">deepseek-reasoner</code> 将在 2026 年 7 月 24 日后停止使用。在过渡期内，这两个旧模型名会分别指向 V4-Flash 的非思考模式和思考模式。</p>
+      <p style="margin:18px 0;text-align:center;"><img src="assets/2026-05-09-suujikat-ai-daily/deepseek-v4-api.png" alt="DeepSeek V4 API" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #eee;"></p>
+      <section style="margin:18px 0;padding:16px;background:#f7fbff;border-left:4px solid #3b82f6;border-radius:8px;">
+        <p style="margin:0 0 8px;color:#235aa6;font-size:14px;font-weight:700;">SuuJiKat 判断</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">DeepSeek V4 的重点不只是“又有新模型”。真正重要的是接口兼容。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">当一个模型同时兼容 OpenAI 和 Anthropic 的调用方式，它就在降低迁移成本。开发者不需要重写整套系统，就能把模型接进已有工作流。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">这也是国产模型非常现实的一条竞争路径：不一定每一项能力都要高举高打，但要尽可能低摩擦地进入工具链。</p>
+        <p style="margin:0;font-size:16px;line-height:1.9;">换句话说，未来模型竞争不只发生在 benchmark 上，也发生在 <code style="padding:2px 5px;background:#eef6ff;border-radius:4px;">base_url</code>、模型名、上下文长度、价格、延迟和迁移成本里。</p>
+      </section>
+      <p style="margin:14px 0 6px;color:#8a8178;font-size:14px;font-weight:700;">来源</p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://api-docs.deepseek.com/updates" style="color:#576b95;text-decoration:none;">DeepSeek API Docs - Change Log</a></p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://api-docs.deepseek.com/news/news260424" style="color:#576b95;text-decoration:none;">DeepSeek API Docs - DeepSeek V4 Preview Release</a></p>
+      <p style="margin:0;font-size:14px;line-height:1.7;"><a href="https://www.deepseek.com/en/transparency/" style="color:#576b95;text-decoration:none;">DeepSeek Transparency Center</a></p>
+    </section>
+
+    <section style="margin:40px 0 0;">
+      <h2 style="margin:0 0 16px;padding:0 0 10px;border-bottom:2px solid #111;font-size:22px;line-height:1.45;">03｜阿里 Qwen3.6 开源推进，重点转向 agentic coding 和真实开发者工作流</h2>
+      <h3 style="margin:18px 0 10px;font-size:17px;line-height:1.5;color:#111;">发生了什么</h3>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">阿里 Qwen 官方 GitHub 仓库显示，Qwen3.6 是 Qwen 模型家族的最新系列之一。</p>
+      <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">官方介绍里有几个关键词很清楚：</p>
+      <p style="margin:0 0 8px;padding-left:14px;font-size:16px;line-height:1.85;">· Agentic Coding</p>
+      <p style="margin:0 0 8px;padding-left:14px;font-size:16px;line-height:1.85;">· repository-level reasoning</p>
+      <p style="margin:0 0 8px;padding-left:14px;font-size:16px;line-height:1.85;">· Thinking Preservation</p>
+      <p style="margin:0 0 8px;padding-left:14px;font-size:16px;line-height:1.85;">· Qwen Code / Qwen Agent</p>
+      <p style="margin:0 0 12px;padding-left:14px;font-size:16px;line-height:1.85;">· OpenAI / Anthropic compatible API</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">Qwen3.6-35B-A3B 已在 4 月 16 日上线 Hugging Face Hub 和 ModelScope。</p>
+      <p style="margin:0 0 16px;font-size:16px;line-height:1.9;">Qwen 这条线现在不是单点模型发布，而是模型、API、代码工具、agent 框架和本地/云端部署一起推。</p>
+      <p style="margin:18px 0;text-align:center;"><img src="assets/2026-05-09-suujikat-ai-daily/qwen36.png" alt="Qwen 3.6" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #eee;"></p>
+      <section style="margin:18px 0;padding:16px;background:#f7fbff;border-left:4px solid #3b82f6;border-radius:8px;">
+        <p style="margin:0 0 8px;color:#235aa6;font-size:14px;font-weight:700;">SuuJiKat 判断</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">Qwen 的优势不是“中文大模型”这五个字，而是开发者入口。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">它把模型权重、API 兼容、Qwen Code、Qwen Agent、ModelScope、Hugging Face 这些东西连在一起，本质上是在做一件事：</p>
+        <p style="margin:0 0 12px;font-size:18px;line-height:1.75;font-weight:800;">让国内模型更容易进入开发者的日常生产环境。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">这对 Harmony 工作流很关键。</p>
+        <p style="margin:0;font-size:16px;line-height:1.9;">如果一个模型能在本地、云端、CLI、agent 框架之间顺滑切换，它就不只是聊天窗口，而是工作流里的可替换模块。</p>
+      </section>
+      <p style="margin:14px 0 6px;color:#8a8178;font-size:14px;font-weight:700;">来源</p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://github.com/QwenLM/Qwen3.6" style="color:#576b95;text-decoration:none;">QwenLM/Qwen3.6 GitHub</a></p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://github.com/QwenLM" style="color:#576b95;text-decoration:none;">Qwen GitHub organization</a></p>
+      <p style="margin:0;font-size:14px;line-height:1.7;"><a href="https://qwenlm.github.io/qwen-code-docs/en/blog/weekly-update-2026-04-09/" style="color:#576b95;text-decoration:none;">Qwen Code Weekly - Qwen 3.6 Plus Launch</a></p>
+    </section>
+
+    <section style="margin:40px 0 0;">
+      <h2 style="margin:0 0 16px;padding:0 0 10px;border-bottom:2px solid #111;font-size:22px;line-height:1.45;">04｜字节 Seed2.0、Seedance 2.0、Seed3D 2.0 把 AI 推向内容生产流水线</h2>
+      <h3 style="margin:18px 0 10px;font-size:17px;line-height:1.5;color:#111;">发生了什么</h3>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">字节 Seed 这段时间的模型线非常密集。</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">Seed2.0 官方页面显示，它是一组通用 agent 模型，包括 Pro、Lite、Mini 三个尺寸，强调多模态理解、LLM 能力和长链路复杂任务。</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">Seedance 2.0 是新一代视频创作模型，支持文字、图片、音频、视频四种输入模态，并强化多模态参考、视频延长、视频编辑和音视频一体化生成。</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">Seed3D 2.0 则面向 3D 生成，重点是更高几何精度、更强材质质量和更好的下游可用性。</p>
+      <p style="margin:0 0 16px;font-size:16px;line-height:1.9;">此外，字节还在 4 月发布了 Seeduplex，全双工语音大模型，强调“边听边说”，让语音交互从问答轮次走向更自然的实时对话。</p>
+      <p style="margin:18px 0;text-align:center;"><img src="assets/2026-05-09-suujikat-ai-daily/bytedance-seed.png" alt="ByteDance Seed models" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #eee;"></p>
+      <section style="margin:18px 0;padding:16px;background:#f7fbff;border-left:4px solid #3b82f6;border-radius:8px;">
+        <p style="margin:0 0 8px;color:#235aa6;font-size:14px;font-weight:700;">SuuJiKat 判断</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">字节这条线和 OpenAI、Anthropic 不太一样。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">它不是只围绕一个聊天模型讲故事，而是在把 AI 接进内容生产链：视频、语音、3D、实时互动、创作工具、平台分发。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">这其实很符合字节的优势。它本来就有内容平台、推荐系统、剪辑工具、广告系统和海量创作者。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">所以字节 AI 最值得看的不是“模型榜单第几”，而是它能不能把生成能力塞进创作者每天已经在用的工具里。</p>
+        <p style="margin:0;font-size:16px;line-height:1.9;">一旦这个链条跑通，AI 对内容创作的影响会非常直接：脚本、分镜、配音、视频、素材、3D 资产，都会变成可以反复实验的模块。</p>
+      </section>
+      <p style="margin:14px 0 6px;color:#8a8178;font-size:14px;font-weight:700;">来源</p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://seed.bytedance.com/en/seed2" style="color:#576b95;text-decoration:none;">ByteDance Seed - Seed2.0</a></p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://seed.bytedance.com/blog/seedance-2-0-official-launch" style="color:#576b95;text-decoration:none;">ByteDance Seed - Seedance 2.0 Official Launch</a></p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://seed.bytedance.com/en/blog/seed3d-2-0-released-higher-precision-and-greater-usability" style="color:#576b95;text-decoration:none;">ByteDance Seed - Seed3D 2.0 Released</a></p>
+      <p style="margin:0;font-size:14px;line-height:1.7;"><a href="https://seed.bytedance.com/en/blog/introducing-seed-full-duplex-speech-llm-attentive-listening-robust-interference-suppression-enabling-more-natural-interaction" style="color:#576b95;text-decoration:none;">ByteDance Seed - Seeduplex full-duplex speech LLM</a></p>
+    </section>
+
+    <section style="margin:40px 0 0;">
+      <h2 style="margin:0 0 16px;padding:0 0 10px;border-bottom:2px solid #111;font-size:22px;line-height:1.45;">05｜腾讯混元 Hy3 preview 与 HY-World 2.0：一个做实用 agent，一个做 3D 世界</h2>
+      <h3 style="margin:18px 0 10px;font-size:17px;line-height:1.5;color:#111;">发生了什么</h3>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">腾讯近期有两条值得放在一起看。</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">第一条是 Hy3 preview。腾讯官方称，Hy3 preview 是 Hy 系列至今最智能的模型，在复杂推理、指令遵循、上下文学习、代码、agent 能力和推理性能上都有提升。官方还提到，腾讯从 2026 年 2 月起重建了预训练和强化学习基础设施，目标是让模型更适合真实业务使用。</p>
+      <p style="margin:0 0 16px;font-size:16px;line-height:1.9;">第二条是 HY-World 2.0，也就是混元 3D 世界模型 2.0。腾讯云开发者社区介绍称，它是一个开源、多模态世界模型，可面向 3D 世界生成，并提供项目链接、GitHub 和试用入口。</p>
+      <p style="margin:18px 0;text-align:center;"><img src="assets/2026-05-09-suujikat-ai-daily/tencent-hunyuan.png" alt="Tencent Hunyuan" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #eee;"></p>
+      <section style="margin:18px 0;padding:16px;background:#f7fbff;border-left:4px solid #3b82f6;border-radius:8px;">
+        <p style="margin:0 0 8px;color:#235aa6;font-size:14px;font-weight:700;">SuuJiKat 判断</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">腾讯混元的看点不是一个，而是两个方向：</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">一个方向是 Hy3 这种更通用的 agent 能力，适合进入文档、会议、代码、办公协作。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">另一个方向是 HY-World 2.0 这种 3D 世界模型，适合游戏、虚拟空间、数字孪生和交互内容。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">这两条线如果以后能和腾讯自己的产品生态接起来，就会变成很强的分发能力。</p>
+        <p style="margin:0;font-size:16px;line-height:1.9;">AI 模型真正进入普通人生活，往往不是靠一个独立 App，而是靠已经存在的工具入口。</p>
+      </section>
+      <p style="margin:14px 0 6px;color:#8a8178;font-size:14px;font-weight:700;">来源</p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://www.tencent.com/en-us/articles/2202320.html" style="color:#576b95;text-decoration:none;">Tencent - Hy3 preview</a></p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://cloud.tencent.com/developer/article/2662463" style="color:#576b95;text-decoration:none;">腾讯云开发者社区 - HY-World 2.0</a></p>
+      <p style="margin:0;font-size:14px;line-height:1.7;"><a href="https://github.com/Tencent-Hunyuan/HY-World-2.0" style="color:#576b95;text-decoration:none;">HY-World 2.0 GitHub</a></p>
+    </section>
+
+    <section style="margin:40px 0 0;">
+      <h2 style="margin:0 0 16px;padding:0 0 10px;border-bottom:2px solid #111;font-size:22px;line-height:1.45;">06｜百度 ERNIE 5.0：搜索、数字人和应用分发仍然是大模型落地入口</h2>
+      <h3 style="margin:18px 0 10px;font-size:17px;line-height:1.5;color:#111;">发生了什么</h3>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">百度 ERNIE 5.0 虽然不是今天的新发布，但它应该放进国内 AI 巨头地图里。</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">百度在 Baidu World 2025 发布 ERNIE 5.0，并将它定位为原生全模态基础模型，可以处理文本、图像、音频和视频。ERNIE 5.0 技术报告也把它描述为统一多模态理解和生成的基础模型。</p>
+      <p style="margin:0 0 16px;font-size:16px;line-height:1.9;">TIME 对李彦宏的采访里，他提到百度做基础模型时采用 application-driven approach，也就是从搜索、数字人、直播电商等应用需求倒推模型能力。</p>
+      <p style="margin:18px 0;text-align:center;"><img src="assets/2026-05-09-suujikat-ai-daily/baidu-ernie.png" alt="Baidu ERNIE 5.0" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #eee;"></p>
+      <section style="margin:18px 0;padding:16px;background:#f7fbff;border-left:4px solid #3b82f6;border-radius:8px;">
+        <p style="margin:0 0 8px;color:#235aa6;font-size:14px;font-weight:700;">SuuJiKat 判断</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">百度这条线容易被模型社区低估，因为它不像开源模型那样每天在 GitHub 上刷存在感。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">但百度的核心优势是入口：搜索、AI 云、数字人、地图、内容分发。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">大模型真正变成普通人的工具，不一定总是从一个独立聊天 App 开始，也可能从搜索结果、客服、直播间、办公云和营销系统里渗进去。</p>
+        <p style="margin:0;font-size:16px;line-height:1.9;">所以看百度，不是只看 ERNIE 5.0 跑分，而是看它能不能把模型能力变成搜索和商业系统里的默认能力。</p>
+      </section>
+      <p style="margin:14px 0 6px;color:#8a8178;font-size:14px;font-weight:700;">来源</p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://www.prnewswire.com/news-releases/baidu-unveils-ernie-5-0-and-a-series-of-ai-applications-at-baidu-world-2025--ramps-up-global-push-302614531.html" style="color:#576b95;text-decoration:none;">Baidu - ERNIE 5.0 at Baidu World 2025</a></p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://arxiv.org/abs/2602.04705" style="color:#576b95;text-decoration:none;">ERNIE 5.0 Technical Report</a></p>
+      <p style="margin:0;font-size:14px;line-height:1.7;"><a href="https://time.com/7357630/robin-li-baidu-interview/" style="color:#576b95;text-decoration:none;">TIME - Robin Li on China’s push to diffuse AI throughout society</a></p>
+    </section>
+
+    <section style="margin:40px 0 0;">
+      <h2 style="margin:0 0 16px;padding:0 0 10px;border-bottom:2px solid #111;font-size:22px;line-height:1.45;">07｜海外线索：OpenAI 继续推进实时语音和 cyber 模型，Anthropic 继续补算力</h2>
+      <h3 style="margin:18px 0 10px;font-size:17px;line-height:1.5;color:#111;">发生了什么</h3>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">海外这边，过去两天仍然有几条重要线索。</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">OpenAI 5 月 7 日发布新一代 API 音频模型，把实时语音、翻译、转写和工具调用放进更完整的语音工作流。</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">Axios 还报道，OpenAI 正在向经过审核的网络安全防御者开放 GPT-5.5-Cyber 的 limited preview，用于关键基础设施防御场景。</p>
+      <p style="margin:0 0 16px;font-size:16px;line-height:1.9;">Anthropic 则继续补算力。xAI 5 月 6 日宣布与 Anthropic 达成算力合作，Anthropic 将使用额外算力提升 Claude Pro 和 Claude Max 用户容量。</p>
+      <p style="margin:18px 0;text-align:center;"><img src="assets/2026-05-09-suujikat-ai-daily/overseas-signals.png" alt="Overseas AI signals" style="max-width:100%;height:auto;border-radius:8px;border:1px solid #eee;"></p>
+      <section style="margin:18px 0;padding:16px;background:#f7fbff;border-left:4px solid #3b82f6;border-radius:8px;">
+        <p style="margin:0 0 8px;color:#235aa6;font-size:14px;font-weight:700;">SuuJiKat 判断</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">海外前沿实验室的主线更像是：</p>
+        <p style="margin:0 0 14px;font-size:18px;line-height:1.75;font-weight:800;">实时入口、高风险系统、算力、可信访问。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">国内头部厂商的主线更像是：</p>
+        <p style="margin:0 0 14px;font-size:18px;line-height:1.75;font-weight:800;">开源模型、低迁移成本、内容生产、多模态工具、产品分发。</p>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">这两边不是简单谁领先谁落后，而是在抢不同的入口。</p>
+        <p style="margin:0;font-size:16px;line-height:1.9;">一个抢“最强能力和高风险场景”，一个抢“更低成本和更大规模使用”。</p>
+      </section>
+      <p style="margin:14px 0 6px;color:#8a8178;font-size:14px;font-weight:700;">来源</p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://openai.com/index/advancing-voice-intelligence-with-new-models-in-the-api/" style="color:#576b95;text-decoration:none;">OpenAI - Advancing voice intelligence with new models in the API</a></p>
+      <p style="margin:0 0 6px;font-size:14px;line-height:1.7;"><a href="https://www.axios.com/2026/05/07/openai-gpt-55-cybersecurity-model" style="color:#576b95;text-decoration:none;">Axios - OpenAI makes its Mythos rival more widely available to cyber defenders</a></p>
+      <p style="margin:0;font-size:14px;line-height:1.7;"><a href="https://x.ai/news/anthropic-compute-partnership" style="color:#576b95;text-decoration:none;">xAI - Anthropic Compute Partnership</a></p>
+    </section>
+
+    <section style="margin:44px 0 0;padding:20px 18px;background:#111;color:#fff;border-radius:10px;">
+      <h2 style="margin:0 0 14px;font-size:22px;line-height:1.5;">今天的一个判断</h2>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">今天这期最想修正一个视角：</p>
+      <p style="margin:0 0 16px;font-size:20px;line-height:1.7;font-weight:800;">AI 日报不能只盯 OpenAI 和 Claude。</p>
+      <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">OpenAI、Anthropic、Google 当然重要，因为它们还在定义前沿能力、安全边界和高风险系统。</p>
+      <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">但国内 AI 也不能只被当成“追赶者”。</p>
+      <p style="margin:0 0 8px;font-size:16px;line-height:1.9;">DeepSeek 在接口兼容和低成本上做文章。</p>
+      <p style="margin:0 0 8px;font-size:16px;line-height:1.9;">Qwen 在开源、API、代码工具和 agent 框架上做开发者生态。</p>
+      <p style="margin:0 0 8px;font-size:16px;line-height:1.9;">Kimi 把开放模型和长任务 coding 继续往前推。</p>
+      <p style="margin:0 0 8px;font-size:16px;line-height:1.9;">豆包 / Seed 系列把 AI 塞进语音、视频、3D 和内容创作链。</p>
+      <p style="margin:0 0 8px;font-size:16px;line-height:1.9;">腾讯混元则同时押注办公 agent 和 3D 世界生成。</p>
+      <p style="margin:0;font-size:16px;line-height:1.9;">百度则提醒我们，搜索、云和商业应用入口仍然是大模型落地的硬通道。</p>
+    </section>
+
+    <section style="margin:26px 0 0;padding:18px;background:#f8f5ee;border-left:4px solid #222;border-radius:10px;">
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">这些信号合在一起说明一件事：</p>
+      <p style="margin:0 0 16px;font-size:20px;line-height:1.7;font-weight:800;">下一阶段 AI 竞争，不只是谁的模型最聪明，而是谁能成为更多工作流里的默认零件。</p>
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.9;">对创作者来说，真正该关心的问题也许不是“哪个模型赢了”，而是：</p>
+      <p style="margin:0 0 16px;font-size:20px;line-height:1.7;font-weight:800;">哪个模型、哪个工具、哪个平台，能让你更快完成一次实验，并把这次实验变成可复用的方法。</p>
+      <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">这也是 SuuJiKat 会继续盯国内 AI 巨头的原因。</p>
+      <p style="margin:0 0 10px;font-size:16px;line-height:1.9;">因为人类接近智慧的第一条路，是不断实验。</p>
+      <p style="margin:0;font-size:16px;line-height:1.9;">而现在，实验的成本正在被这些模型一点点压低。</p>
+    </section>
+
+    <section style="margin:34px 0 0;padding-top:18px;border-top:1px solid #ece7df;color:#8a8178;">
+      <p style="margin:0;font-size:13px;line-height:1.8;">SuuJiKat AI Daily｜AIGC 见闻、AI 使用心得与 Harmony 工作流记录。</p>
+    </section>
+  </main>
+</body>
+</html>
