@@ -131,10 +131,12 @@ import { suujikatAiDaily20260506 } from "./articles/suujikat-ai-daily-2026-05-06
 import { suujikatAiDaily20260507 } from "./articles/suujikat-ai-daily-2026-05-07";
 import { suujikatAiDaily20260508 } from "./articles/suujikat-ai-daily-2026-05-08";
 import { suujikatAiDaily20260509 } from "./articles/suujikat-ai-daily-2026-05-09";
+import { suujikatAiDaily20260511 } from "./articles/suujikat-ai-daily-2026-05-11";
 
 export const categories = ["All", "AI", "Design", "Code", "Product", "Notes", "Projects"];
 
 export const posts: BlogArticle[] = [
+  suujikatAiDaily20260511,
   suujikatAiDaily20260509,
   suujikatAiDaily20260508,
   suujikatAiDaily20260507,
