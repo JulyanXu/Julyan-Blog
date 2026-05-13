@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>从20公里到42.195公里：我和马拉松的第一年</title>
+  <style>
+:root {
+  --bg: #fff7ee;
+  --paper: rgba(255, 255, 255, 0.94);
+  --ink: #2c2927;
+  --muted: #756e68;
+  --line: rgba(80, 64, 52, 0.13);
+  --accent: #d95f35;
+  --accent-2: #f0a34a;
+  --shadow: 0 24px 70px rgba(63, 42, 25, 0.14);
+  --radius: 28px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 193, 130, .38), transparent 26rem),
+    radial-gradient(circle at 88% 2%, rgba(217, 95, 53, .16), transparent 22rem),
+    linear-gradient(180deg, #fff7ee 0%, #fffaf6 42%, #f8efe7 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(100, 74, 49, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(100, 74, 49, .035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+
+.hero {
+  min-height: 62vh;
+  display: grid;
+  place-items: center;
+  padding: 7rem 1.2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "42.195";
+  position: absolute;
+  right: -1rem;
+  bottom: -3.6rem;
+  font-weight: 900;
+  font-size: clamp(5rem, 18vw, 14rem);
+  letter-spacing: 0;
+  color: rgba(217, 95, 53, .08);
+  z-index: 0;
+}
+
+.hero-inner { position: relative; z-index: 1; max-width: 980px; }
+.eyebrow {
+  display: inline-flex;
+  gap: .5rem;
+  align-items: center;
+  margin: 0 0 1.2rem;
+  padding: .48rem .82rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .64);
+  color: var(--accent);
+  font-size: .92rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.eyebrow::before { content: "🏃‍♂️"; }
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 7vw, 5.9rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+.lead {
+  max-width: 760px;
+  margin: 1.5rem auto 0;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.9;
+}
+
+.page {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto 4rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: -1.4rem auto 1.2rem;
+  position: relative;
+  z-index: 2;
+}
+.stat {
+  padding: 1.2rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .78);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 36px rgba(72, 48, 30, .08);
+}
+.stat strong { display: block; font-size: clamp(1.25rem, 2.5vw, 2rem); line-height: 1.15; color: var(--accent); }
+.stat span { display: block; margin-top: .35rem; color: var(--muted); font-size: .92rem; }
+
+.article-card {
+  position: relative;
+  margin: 0 auto;
+  padding: clamp(1.4rem, 4vw, 4rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.article-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: clamp(1.3rem, 4vw, 3.2rem);
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(217,95,53,.38), rgba(217,95,53,.04));
+}
+
+.article-card > * { position: relative; z-index: 1; }
+.article-card p,
+.article-card blockquote,
+.article-card h2,
+.article-card .photo-card,
+.article-card .photo-grid {
+  margin-left: clamp(1.1rem, 4vw, 3.2rem);
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: .82rem;
+  margin-top: 3.4rem;
+  margin-bottom: 1.2rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+h2:first-of-type { margin-top: .2rem; }
+h2 span {
+  flex: 0 0 auto;
+  width: 2.7rem;
+  height: 2.7rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  font-size: .88rem;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(217,95,53,.28);
+}
+
+.article-card p {
+  max-width: 790px;
+  margin-top: .9rem;
+  margin-bottom: .9rem;
+  font-size: clamp(1.02rem, 1.3vw, 1.13rem);
+  line-height: 2.05;
+  letter-spacing: .01em;
+}
+
+.metric-text {
+  color: var(--accent);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+blockquote {
+  max-width: 720px;
+  margin-top: 1.1rem;
+  margin-bottom: 1.1rem;
+  padding: 1rem 1.15rem 1rem 1.35rem;
+  border-left: 5px solid var(--accent);
+  border-radius: 0 18px 18px 0;
+  background: linear-gradient(90deg, rgba(217, 95, 53, .1), rgba(240, 163, 74, .04));
+  color: #4b3329;
+  font-size: clamp(1.08rem, 1.6vw, 1.25rem);
+  line-height: 1.9;
+  font-weight: 700;
+}
+
+.impact-line {
+  max-width: 760px !important;
+  padding: 1.2rem 1.3rem;
+  border-radius: 22px;
+  background: #fff3e7;
+  border: 1px solid rgba(217, 95, 53, .18);
+  color: var(--accent);
+  font-size: clamp(1.35rem, 4vw, 2.2rem) !important;
+  line-height: 1.35 !important;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0;
+}
+
+.milestone {
+  max-width: 760px !important;
+  padding: 1.05rem 1.18rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(217, 95, 53, .12), rgba(240, 163, 74, .08));
+  border: 1px solid rgba(217, 95, 53, .16);
+  font-weight: 800;
+}
+.milestone::before { content: "🔥 "; }
+
+.photo-card {
+  max-width: 820px;
+  margin-top: 2rem;
+  margin-bottom: 2.2rem;
+  border-radius: 26px;
+  background: #fff;
+  border: 1px solid rgba(80, 64, 52, .12);
+  overflow: hidden;
+  box-shadow: 0 18px 46px rgba(68, 45, 28, .13);
+}
+
+.photo-grid {
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2.2rem;
+}
+.photo-grid .photo-card {
+  margin: 0;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 22px;
+}
+.photo-grid .photo-shell {
+  min-height: 320px;
+  aspect-ratio: 3 / 4;
+}
+.photo-grid .photo-shell img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+}
+.photo-grid figcaption {
+  flex: 0 0 auto;
+  align-items: flex-start;
+}
+.photo-shell {
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(240, 163, 74, .16), transparent 18rem),
+    linear-gradient(135deg, #fff6ec, #f7efe8);
+}
+.photo-shell img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(72vh, 680px);
+  object-fit: contain;
+  background: #f7efe8;
+}
+figcaption {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: .86rem 1rem 1rem;
+  background: #fff;
+  color: #65554a;
+  font-size: .96rem;
+  line-height: 1.55;
+  border-top: 1px solid rgba(80, 64, 52, .1);
+}
+figcaption::before { content: "📍 "; }
+.photo-card.photo-4,
+.photo-card.photo-7 { max-width: 640px; }
+figcaption small {
+  margin-left: auto;
+  color: #a09289;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: .75rem;
+  overflow-wrap: anywhere;
+}
+.image-fallback { display: none; padding: 2rem; text-align: center; color: var(--muted); }
+.image-fallback .fallback-icon { font-size: 2.6rem; margin-bottom: .5rem; }
+.image-fallback strong { display: block; margin-bottom: .45rem; color: var(--accent); font-size: 1.05rem; }
+.image-fallback span { display: block; max-width: 560px; line-height: 1.8; }
+.image-fallback code { padding: .12rem .36rem; border-radius: .4rem; background: rgba(0,0,0,.06); color: #5d493d; }
+.photo-card.missing .image-fallback { display: grid; place-items: center; }
+.photo-card.missing img { display: none; }
+
+@media (max-width: 860px) {
+  .hero { min-height: auto; padding-top: 4.8rem; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .article-card::before { left: 1.1rem; }
+  .article-card p,
+  .article-card blockquote,
+  .article-card h2,
+  .article-card .photo-card,
+  .article-card .photo-grid { margin-left: 1.3rem; }
+  figcaption { display: block; }
+  figcaption small { display: block; margin: .35rem 0 0 1.65rem; }
+  .photo-grid { grid-template-columns: 1fr; }
+  .photo-grid .photo-shell { min-height: 210px; }
+}
+
+@media (max-width: 560px) {
+  .page { width: min(100% - 18px, 1120px); }
+  .stats { grid-template-columns: 1fr; }
+  .article-card { padding: 1.05rem .9rem 1.4rem; border-radius: 22px; }
+  .article-card p { line-height: 1.95; }
+  .photo-shell { min-height: 210px; }
+  .photo-shell img { max-height: 520px; }
+}
+
+@media print {
+  body { background: white; }
+  body::before, .hero::after { display: none; }
+  .hero { min-height: auto; padding: 2rem 0; }
+  .page { width: 100%; }
+  .article-card { box-shadow: none; border: none; padding: 0; }
+  .stats { page-break-after: avoid; }
+  .photo-card { box-shadow: none; break-inside: avoid; }
+}
+</style>
+  <script>
+window.handleImageError = function(img) {
+  var fallbacks = (img.getAttribute('data-fallbacks') || '').split('|').filter(Boolean);
+  var index = Number(img.getAttribute('data-fallback-index') || '0');
+  if (index < fallbacks.length) {
+    img.setAttribute('data-fallback-index', String(index + 1));
+    img.src = fallbacks[index];
+    return;
+  }
+  var figure = img.closest('figure');
+  if (figure) figure.classList.add('missing');
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.photo-shell img').forEach(function(img) {
+    if (img.complete && img.naturalWidth === 0) window.handleImageError(img);
+  });
+});
+</script>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">2023 跑步记录 · 从第一次20公里到全马 PB</p>
+    <h1>从20公里到42.195公里：<br>我和马拉松的第一年</h1>
+    <p class="lead">兴奋、撞墙、破4、PB，以及在一次次想放弃时重新往前迈出的脚步。</p>
+  </div>
+</header>
+
+<main class="page">
+
+<section class="stats" aria-label="文章摘要">
+  <div class="stat"><strong>2023.09</strong><span>第一次挑战 20km</span></div>
+  <div class="stat"><strong>半马</strong><span>白云山山地赛道</span></div>
+  <div class="stat"><strong>首马破4</strong><span>珠海马拉松</span></div>
+  <div class="stat"><strong>3:21</strong><span>黄埔马拉松 PB</span></div>
+</section>
+
+<article class="article-card">
+<h2><span>01</span>Keep K马：第一次20公里</h2>
+<p>我真正接触长跑，是在2023年9月。</p>
+<p>那时候，新冠疫情刚结束没多久，生活像是慢慢重新被打开，全国各地的路跑活动也陆续恢复。以前我对“马拉松”这三个字的理解，大概还停留在电视转播、新闻照片，以及“这得多能跑啊”的感叹里。那时的我，单次跑过的最长距离还不超过10公里，却在某种说不清的冲动下，第一次报名了 Keep 的 K马活动——<span class="metric-text">20公里</span>。</p>
+
+<figure class="photo-card photo-1">
+  <div class="photo-shell">
+    <img src="marathon-story-assets/01-keep-20km.jpg" alt="Keep K马 20km：第一次把距离推到20公里" loading="lazy" onerror="window.handleImageError && window.handleImageError(this)">
+    <div class="image-fallback" aria-live="polite">
+      <div class="fallback-icon">📷</div>
+      <strong>图片暂未加载</strong>
+      <span>请确认 HTML 文件旁边保留 <code>marathon-story-assets</code> 文件夹。</span>
+    </div>
+  </div>
+  <figcaption>Keep K马 20km：第一次把距离推到20公里</figcaption>
+</figure>
+<p>现在回想起来，那更像是一次莽撞又真诚的开始。</p>
+<p>活动前一天晚上，我兴奋得睡不着。明明知道第二天要跑<span class="metric-text">20公里</span>，身体需要休息，可脑子就是停不下来：路线怎么跑？会不会跑不完？<span class="metric-text">15公里</span>之后是什么感觉？万一坚持不住怎么办？越想越清醒，最后只睡了3个小时。</p>
+<p>第二天开跑的时候，整个人却还是亢奋的。前几公里很轻松，甚至有一种“原来<span class="metric-text">20公里</span>也没那么难”的错觉。路上有风，脚步踩在地面上，我感觉自己像是突然进入了一个新的世界。可跑步最诚实的地方就在于，它不会因为你的兴奋而放过你。</p>
+<p>到了<span class="metric-text">15公里</span>之后，痛苦开始一点点浮上来。腿变沉，呼吸变乱，原本顺畅的节奏像被人打断。每迈一步，都能感觉到身体在提醒我：你以前从来没有跑到过这里。那种感觉不是简单的累，而是一种从身体深处升起来的怀疑——我真的跑得完吗？</p>
+<p>那几公里，我几乎是在和自己谈判。</p>
+<blockquote>“再跑一公里就好。”</blockquote>
+<blockquote>“不要停，慢一点也没关系。”</blockquote>
+<blockquote>“既然已经到这里了，就别让前面的路白跑。”</blockquote>
+<p>最后，我还是挺过去了。冲完<span class="metric-text">20公里</span>的时候，我没有想象中那么潇洒，更多的是疲惫、酸痛和一种迟来的兴奋。那一刻我才明白，长跑不是从起点开始的，而是从你第一次想放弃却没有放弃的地方开始的。🏃‍♂️</p>
+<h2><span>02</span>白云山：半只脚踏进马拉松</h2>
+<p>同年10月，我又报名了广州白云山山地半马。</p>
+<p>如果说 K马是我第一次试探长距离，那么白云山山地半马，就是我半只脚踏进马拉松队列的开始。那条路线真的很虐人，前半程几乎全是上坡，后半程又全是下坡，像是把人从一个世界直接扔到另一个世界。前面爬坡的时候，每一步都像在和地心引力对抗；后面下坡的时候，又要控制速度和膝盖，不能让身体完全失控。</p>
+
+<figure class="photo-card photo-2">
+  <div class="photo-shell">
+    <img src="marathon-story-assets/02-baiyun-course.jpg" alt="广州白云山山地半马：前半程上坡，后半程下坡" loading="lazy" onerror="window.handleImageError && window.handleImageError(this)">
+    <div class="image-fallback" aria-live="polite">
+      <div class="fallback-icon">📷</div>
+      <strong>图片暂未加载</strong>
+      <span>请确认 HTML 文件旁边保留 <code>marathon-story-assets</code> 文件夹。</span>
+    </div>
+  </div>
+  <figcaption>广州白云山山地半马：前半程上坡，后半程下坡</figcaption>
+</figure>
+<p>那场比赛让我第一次意识到，跑步不只是配速和距离，它还包括地形、天气、节奏，以及你在痛苦中对自己的判断。</p>
+<p>前半程上坡时，我经常会忍不住低头看路，心里想：“怎么还没到顶？”身边的人有的开始走，有的呼吸变得很重，我也无数次想慢下来。但山路很奇妙，它让你痛苦，也让你专注。因为你没有太多精力去想别的，只能盯着眼前这一段路，只能告诉自己：先到下一个弯道，再说。</p>
+<p>到了后半程下坡，身体像突然获得了解放，风从脸边刮过去，腿却又开始承受另一种压力。那种一半兴奋、一半失控的感觉，让我至今都记得。</p>
+<p>冲线的时候，我还拿着手机记录了一下。现在想想，那段视频可能并不专业，画面也许还会晃，但它对我来说特别珍贵。因为那一刻，我不是在记录一个成绩，而是在记录一个新的自己。</p>
+<p>从那一刻开始，我心里真的冒出了一句话：</p>
+<blockquote>“我好像可以。”</blockquote>
+
+<div class="photo-grid photo-grid-2" aria-label="白云山赛后图片组">
+<figure class="photo-card photo-baiyun-1">
+  <div class="photo-shell">
+    <img src="marathon-story-assets/03-baiyun-finish.jpg" alt="白云山赛后：从那一刻开始，心里冒出“我好像可以”" loading="lazy" onerror="window.handleImageError && window.handleImageError(this)">
+    <div class="image-fallback" aria-live="polite">
+      <div class="fallback-icon">📷</div>
+      <strong>图片暂未加载</strong>
+      <span>请确认 HTML 文件旁边保留 <code>marathon-story-assets</code> 文件夹。</span>
+    </div>
+  </div>
+  <figcaption>白云山赛后：从那一刻开始，心里冒出“我好像可以”</figcaption>
+</figure>
+<figure class="photo-card photo-baiyun-2">
+  <div class="photo-shell">
+    <img src="marathon-story-assets/04-baiyun-record.jpeg" alt="白云山记录补充：半马之后，第一次觉得自己真的可以" loading="lazy" onerror="window.handleImageError && window.handleImageError(this)">
+    <div class="image-fallback" aria-live="polite">
+      <div class="fallback-icon">📷</div>
+      <strong>图片暂未加载</strong>
+      <span>请确认 HTML 文件旁边保留 <code>marathon-story-assets</code> 文件夹。</span>
+    </div>
+  </div>
+  <figcaption>白云山记录补充：半马之后，第一次觉得自己真的可以</figcaption>
+</figure>
+</div>
+<h2><span>03</span>珠海：首马破4</h2>
+<p>白云山山地半马结束后的一个星期，我又站上了珠海马拉松的赛场。</p>
+<p>这一次，是全马。</p>
+<p class="impact-line"><span class="metric-text">42.195公里</span>。</p>
+<p>这串数字以前看起来很遥远，可当我真的报名、真的到达珠海、真的站在起点时，它突然变得真实起来。那次我还逛了暨南大学珠海校园，也和一起报名的校友参加比赛。校园、海风、赛道、校友，这些元素混在一起，让那场比赛在我心里多了一层特殊的意义。</p>
+
+<figure class="photo-card photo-4">
+  <div class="photo-shell">
+    <img src="marathon-story-assets/05-zhuhai-campus.jpg" alt="珠海马拉松前后：校园、海风、校友与第一次全马" loading="lazy" onerror="window.handleImageError && window.handleImageError(this)">
+    <div class="image-fallback" aria-live="polite">
+      <div class="fallback-icon">📷</div>
+      <strong>图片暂未加载</strong>
+      <span>请确认 HTML 文件旁边保留 <code>marathon-story-assets</code> 文件夹。</span>
+    </div>
+  </div>
+  <figcaption>珠海马拉松前后：校园、海风、校友与第一次全马</figcaption>
+</figure>
+<p>但激动归激动，忐忑也是真的。</p>
+<p>毕竟这是我第一次全马。前一天晚上，我又只睡了3个小时。身体明明很累，脑子却一直在演练第二天的场景：起跑要不要跟人群？补给点怎么安排？<span class="metric-text">30公里</span>之后会不会崩？能不能跑进<span class="metric-text">4小时</span>？</p>
+<p>起跑枪响后，人群一起向前涌动，那种感觉很震撼。第一次参加全马，我真切感受到了观众的簇拥和赛道的热烈。路边的人不断加油，志愿者递水，陌生人的呼喊声一阵阵传来。太阳很大，热得人有些发烫🥵，但那种热情又让人不舍得停下。</p>
+<p>前半程，我一直在记录，也一直努力保持节奏。那时候心里还有很多新鲜感，看到路边的风景、跑友和观众，都觉得自己正在经历一件人生大事。可全马真正的考验，往往不会太早出现。</p>
+<p class="milestone">到了<span class="metric-text">30公里</span>，我撞墙了。</p>
+<p>那不是一堵真实的墙，却比墙更清晰。身体里的能量像突然被抽走，腿开始不听使唤，步频掉下来，呼吸也不再稳定。之前的信心一点点被消耗，我开始走了一段时间。那一刻，内心其实很复杂：一边觉得自己已经很努力了，一边又不甘心就这样放掉目标。</p>
+<p>跑马拉松最难受的地方，不是你累，而是你明明知道终点还很远。</p>
+<p>就在我有些动摇的时候，后面的400兔子追上来了。</p>
+<p>那一刻，我像突然被敲醒一样。400兔子就像一根移动的警戒线，也像一根救命绳：如果跟住，还有机会破4；如果放掉，也许首马就会留下遗憾。</p>
+<p>我记得自己当时没有想太多，只是咬了咬牙，重新跟了上去。腿还是痛，身体还是沉，但心态变了。我不再去想后面还有多少公里，只盯着兔子，只盯着眼前人的背影，只告诉自己：别掉队。</p>
+<p>最后，我真的破了<span class="metric-text">4小时</span>。</p>
+<p class="impact-line">首马 <span class="metric-text">PB</span>。</p>
+<p>冲过终点后，我回头望向终点拱门，心里有一种说不出来的激动。那一刻不是单纯的开心，而是像有很多情绪一起涌上来：疲惫、委屈、庆幸、骄傲，还有一点点不可思议。</p>
+<p>我竟然真的完成了全马。</p>
+<p>而且，是在第一次全马中跑进了<span class="metric-text">4小时</span>。</p>
+
+<div class="photo-grid photo-grid-2" aria-label="珠海首马图片组">
+<figure class="photo-card photo-zhuhai-1">
+  <div class="photo-shell">
+    <img src="marathon-story-assets/06-zhuhai-pb.jpeg" alt="珠海首马 PB：跟住400兔子之后的记录" loading="lazy" onerror="window.handleImageError && window.handleImageError(this)">
+    <div class="image-fallback" aria-live="polite">
+      <div class="fallback-icon">📷</div>
+      <strong>图片暂未加载</strong>
+      <span>请确认 HTML 文件旁边保留 <code>marathon-story-assets</code> 文件夹。</span>
+    </div>
+  </div>
+  <figcaption>珠海首马 PB：跟住400兔子之后的记录</figcaption>
+</figure>
+<figure class="photo-card photo-zhuhai-2">
+  <div class="photo-shell">
+    <img src="marathon-story-assets/07-zhuhai-finish.jpg" alt="首马破4：42.195公里从数字变成身体里的记忆" loading="lazy" onerror="window.handleImageError && window.handleImageError(this)">
+    <div class="image-fallback" aria-live="polite">
+      <div class="fallback-icon">📷</div>
+      <strong>图片暂未加载</strong>
+      <span>请确认 HTML 文件旁边保留 <code>marathon-story-assets</code> 文件夹。</span>
+    </div>
+  </div>
+  <figcaption>首马破4：42.195公里从数字变成身体里的记忆</figcaption>
+</figure>
+</div>
+<p>从那以后，<span class="metric-text">42.195公里</span>不再只是一个遥远的数字，它变成了我身体和记忆里真实存在过的一段路。</p>
+<h2><span>04</span>黄埔：把 PB 顶出来</h2>
+<p>同年12月，我如愿中签了国际田协精英标的黄埔马拉松。更没想到的是，一周之后的深圳宝安马拉松，我也中了签。</p>
+<p class="impact-line">两个都是全马。</p>
+<p>当时之所以连续报名两场挨得这么近的马拉松，是因为经过前几轮赛事抽签后，我才真正体会到，中一场国际田协标牌赛事有多难。很多时候不是你想跑就能跑，也不是你报名了就一定能站上赛道。所以当时的想法也很简单：不要预设自己不可能都中，先报名再说。</p>
+<p>结果，命运真的把两场比赛都给了我。</p>
+<p>经过两个月的休息和调整，我的体能慢慢恢复，也积累了更多长距离训练经验。到了黄埔马拉松赛前，我能明显感觉到自己和刚开始跑步时不一样了。以前面对长距离，更多是紧张和未知；而这一次，我心里多了一些底气。</p>
+<p>黄埔马拉松被很多人认为是国内比较虐的赛道之一，坡差大，对体能和心态都是考验。但也正因为这样，我反而更加期待。我知道这不会是一场轻松的比赛，可我也相信，前几次长途路跑和比赛带给我的，不只是体能上的提升，还有心智上的成长。</p>
+<p>站在黄埔马拉松的起点，我对自己说：</p>
+<blockquote>“这一次，我想 <span class="metric-text">PB</span>。”</blockquote>
+<p class="milestone">全马<span class="metric-text">30公里</span>处，才是真正的开始。</p>
+<p>这句话听过很多次，但只有真正跑在赛道上，才会明白它的分量。前<span class="metric-text">30公里</span>，靠训练、靠节奏、靠体力；<span class="metric-text">30公里</span>之后，更多时候靠的是意志、经验，以及你能不能在身体下滑时稳住自己。</p>
+<p>黄埔那场，我大概在31公里左右开始有点撞墙。身体状态明显下降，腿部越来越沉，呼吸也没有前面那么从容。可这一次和珠海不同，我没有慌。因为我知道，这种感觉会来，也知道它不一定意味着失败。</p>
+<p>我开始把注意力缩小。</p>
+<p>不想终点，不想成绩，不想还有多少公里，只想眼前这一公里。补给点到了就喝水，坡来了就稳住，平路就尽量把配速拉回来。脑子里不断重复一句话：</p>
+<blockquote>“顶住，再顶一顶。”</blockquote>
+<p>那一路，我始终相信自己的潜力和韧性。哪怕身体状态开始下降，我也没有完全放掉目标配速，而是尽量维持，甚至在能顶的时候再往前顶一点。那种过程很痛苦，但也很纯粹。你会感觉自己像是在和另一个自己对抗：一个想慢下来，一个不甘心；一个说够了，一个说还能再坚持。</p>
+<p class="milestone">最后，我以<span class="metric-text">3小时21分</span>的成绩通过终点。</p>
+<p>冲线之后，我回看自己跑过的路，心里只有一句话：</p>
+<p>这一切都值得。</p>
+
+<div class="photo-grid photo-grid-2" aria-label="黄埔马拉松图片组">
+<figure class="photo-card photo-huangpu-1">
+  <div class="photo-shell">
+    <img src="marathon-story-assets/08-huangpu-321.jpg" alt="黄埔马拉松：3小时21分通过终点" loading="lazy" onerror="window.handleImageError && window.handleImageError(this)">
+    <div class="image-fallback" aria-live="polite">
+      <div class="fallback-icon">📷</div>
+      <strong>图片暂未加载</strong>
+      <span>请确认 HTML 文件旁边保留 <code>marathon-story-assets</code> 文件夹。</span>
+    </div>
+  </div>
+  <figcaption>黄埔马拉松：3小时21分通过终点</figcaption>
+</figure>
+<figure class="photo-card photo-huangpu-2">
+  <div class="photo-shell">
+    <img src="marathon-story-assets/09-huangpu-worth.jpg" alt="黄埔赛后：这一切都值得" loading="lazy" onerror="window.handleImageError && window.handleImageError(this)">
+    <div class="image-fallback" aria-live="polite">
+      <div class="fallback-icon">📷</div>
+      <strong>图片暂未加载</strong>
+      <span>请确认 HTML 文件旁边保留 <code>marathon-story-assets</code> 文件夹。</span>
+    </div>
+  </div>
+  <figcaption>黄埔赛后：这一切都值得</figcaption>
+</figure>
+</div>
+<p>那些训练中的疲惫，那些赛前的紧张，那些撞墙时的挣扎，那些一个人咬牙坚持的瞬间，都在这个成绩里得到了回应。黄埔马拉松让我知道，努力真的会在某个时刻，以一种很具体的方式回到你身上。</p>
+<h2><span>05</span>宝安：状态差时也要完成</h2>
+<p>一个星期之后，我又站在了深圳宝安马拉松的赛场上。</p>
+<p>但这一次，故事没有那么顺利。</p>
+<p>从比赛一开始，我就明显感觉到自己的状态极为不佳。身体没有完全恢复，节奏也不对。和黄埔那种“我能<span class="metric-text">PB</span>”的信心不同，宝安一开跑，我心里就隐隐有种不好的预感。</p>
+<p class="milestone">到了<span class="metric-text">15公里</span>，我就撞墙了。</p>
+<p><span class="metric-text">15公里</span>撞墙，对于一场全马来说，实在太早了。那一刻我心里几乎是崩溃的：这场比赛完了。前面还有那么多公里，怎么完成？如果<span class="metric-text">30公里</span>撞墙，至少已经跑完了大半；可<span class="metric-text">15公里</span>的时候就开始痛苦，后面每一公里都像是提前透支。</p>
+<p>跑马拉松最痛苦的，不是单纯的累，而是你知道自己不在状态，却还要面对一段非常遥远的路程。</p>
+<p>弃赛的念头不是没有出现过。可很快，我又把它压了下去。大老远来了，报名费交了，比赛也开始了，我想要完赛，想要奖牌，也想给这段连续作战的经历一个交代。</p>
+<p>于是后面的比赛，变成了一场漫长的拉扯。</p>
+<p><span class="metric-text">15公里</span>，<span class="metric-text">20公里</span>，25公里，<span class="metric-text">30公里</span>……</p>
+<p>每一个数字都像一道关。</p>
+<p>到了后面，31、32、33、34公里，每一公里都变得特别漫长。我几乎是走走停停，跑一段，缓一段，再重新跑起来。那时候已经没有太多配速上的幻想，只剩下一个非常朴素的目标：完成它。</p>
+<p>赛道上的人来来往往，有人超过我，也有人和我一样放慢脚步。每当我想停久一点，心里又会冒出一个声音：</p>
+<blockquote>“可以慢，但不要放弃。”</blockquote>
+<p>这句话支撑着我一点点往前挪。</p>
+<p>宝安马拉松没有黄埔那样的顺畅，也没有珠海首马破4时的热血。它更像是一场关于忍耐的考试。它让我明白，并不是每一场比赛都会按照计划发生，也不是每一次站上赛道都能遇到最佳状态。马拉松教人的地方就在这里：它不仅奖励你状态好的时候跑得快，也考验你状态差的时候能不能坚持到最后。</p>
+<p class="milestone">最终，我还是以<span class="metric-text">4小时</span>以内完成了比赛。</p>
+<p>那一刻，我没有特别兴奋，更多的是一种终于结束的释然。身体很累，心也很累，但当我拿到奖牌的时候，还是觉得这一路没有白来。</p>
+<h2><span>06</span>回望：跑过距离，也跑过自己</h2>
+<p>回头看2023年，从9月第一次尝试<span class="metric-text">20公里</span>，到10月白云山山地半马，再到珠海首马破4，12月黄埔跑到321，最后又在宝安艰难完赛，我像是在短短几个月里，把自己推到了一个完全陌生又不断扩大的世界里。</p>
+<p>长跑改变我的，不只是身体。</p>
+<p>它让我知道，兴奋会过去，热情会波动，状态会起伏，赛道也不会总是平坦。但只要你还愿意往前，哪怕慢一点，哪怕走一段，你都还在路上。</p>
+<p>马拉松最迷人的地方，也许从来不是终点那一刻，而是你在无数次想放弃时，又一次次选择继续。</p>
+<p>从<span class="metric-text">20公里</span>到<span class="metric-text">42.195公里</span>，我跑过的不只是距离，也是那个不断怀疑、不断崩溃、又不断重新站起来的自己。🏅</p>
+
+<figure class="photo-card photo-7">
+  <div class="photo-shell">
+    <img src="marathon-story-assets/10-baoan-finish.jpg" alt="宝安马拉松：状态不佳时，也要一步步完成" loading="lazy" onerror="window.handleImageError && window.handleImageError(this)">
+    <div class="image-fallback" aria-live="polite">
+      <div class="fallback-icon">📷</div>
+      <strong>图片暂未加载</strong>
+      <span>请确认 HTML 文件旁边保留 <code>marathon-story-assets</code> 文件夹。</span>
+    </div>
+  </div>
+  <figcaption>宝安马拉松：状态不佳时，也要一步步完成</figcaption>
+</figure>
+
+</article>
+</main>
+
+</body>
+</html>
