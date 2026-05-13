@@ -185,7 +185,6 @@ function PostCard({ post, onOpen }: { post: BlogArticle; onOpen: (slug: string) 
           alt={post.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <Badge className="absolute left-3 top-3 bg-white/90 text-foreground hover:bg-white">{post.tag}</Badge>
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="text-xs text-muted-foreground">{post.date}</div>
