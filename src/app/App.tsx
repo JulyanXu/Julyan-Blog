@@ -400,6 +400,16 @@ function Footer({ onCategoryChange }: { onCategoryChange: (category: string) => 
           <div>©2026 {site.name}. All rights reserved.</div>
           <div>Built and maintained by Julyan.</div>
         </div>
+        <div className="mt-5 text-center text-xs text-neutral-500">
+          <a
+            href={site.icp.href}
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors hover:text-white"
+          >
+            {site.icp.number}
+          </a>
+        </div>
       </div>
     </footer>
   );

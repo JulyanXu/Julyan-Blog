@@ -23,6 +23,10 @@ export const site = {
   name: "Julyan Blog",
   description: "Notes on design, code, products, and the small decisions behind personal projects.",
   githubRepositoriesUrl: "https://github.com/JulyanXu?tab=repositories",
+  icp: {
+    number: "粤ICP备2026052106号-2",
+    href: "https://beian.miit.gov.cn/",
+  },
   nav: [
     { label: "Essays", href: "#latest-notes", category: "All" },
     { label: "Design", href: "#latest-notes", category: "Design" },
