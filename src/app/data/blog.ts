@@ -22,7 +22,14 @@ export type BlogArticle = {
 export const site = {
   name: "Julyan Blog",
   description: "Notes on design, code, products, and the small decisions behind personal projects.",
+  email: "1581085037@qq.com",
   githubRepositoriesUrl: "https://github.com/JulyanXu?tab=repositories",
+  githubProjectIntro: {
+    title: "GitHub Projects",
+    description:
+      "The blog keeps the thinking, notes, and release stories. GitHub keeps the code and project pages, so the writing and the work can point back to each other.",
+    cta: "View projects on GitHub",
+  },
   icp: {
     number: "粤ICP备2026052106号-2",
     href: "https://beian.miit.gov.cn/",

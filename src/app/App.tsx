@@ -331,10 +331,6 @@ function Promo({ onCategoryChange }: { onCategoryChange: (category: string) => v
 }
 
 function Footer({ onCategoryChange }: { onCategoryChange: (category: string) => void }) {
-  const socialLinks = [
-    { label: "GitHub", href: site.githubRepositoriesUrl, icon: Github },
-  ];
-
   return (
     <footer id="about" className="bg-neutral-950 text-neutral-300">
       <div className="mx-auto max-w-7xl px-6 py-14">
@@ -376,22 +372,18 @@ function Footer({ onCategoryChange }: { onCategoryChange: (category: string) => 
             </ul>
           </div>
           <div className="col-span-2 space-y-4 md:col-span-4">
-            <div className="text-white">Elsewhere</div>
-            <p className="text-sm text-neutral-400">Project code and public updates live outside this site.</p>
-            <div className="flex items-center gap-2 pt-1">
-              {socialLinks.map(({ label, href, icon: Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noreferrer" : undefined}
-                  aria-label={label}
-                  className="grid h-9 w-9 place-items-center rounded-full bg-neutral-900 text-neutral-300 hover:bg-neutral-800 hover:text-white"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
+            <div className="text-white">{site.githubProjectIntro.title}</div>
+            <p className="max-w-sm text-sm leading-6 text-neutral-400">{site.githubProjectIntro.description}</p>
+            <a
+              href={site.githubRepositoriesUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-4 py-2 text-sm text-neutral-100 transition-colors hover:bg-neutral-800"
+            >
+              <Github className="h-4 w-4" />
+              {site.githubProjectIntro.cta}
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
         <Separator className="my-8 bg-neutral-800" />
@@ -407,6 +399,11 @@ function Footer({ onCategoryChange }: { onCategoryChange: (category: string) => 
             className="transition-colors hover:text-white"
           >
             {site.icp.number}
+          </a>
+        </div>
+        <div className="mt-3 text-center text-xs text-neutral-500">
+          <a href={`mailto:${site.email}`} className="transition-colors hover:text-white">
+            {site.email}
           </a>
         </div>
       </div>
