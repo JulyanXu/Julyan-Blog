@@ -139,11 +139,13 @@ import { suujikatAiDaily20260511 } from "./articles/suujikat-ai-daily-2026-05-11
 import { suujikatAiDaily20260512 } from "./articles/suujikat-ai-daily-2026-05-12";
 import { suujikatAiDaily20260513 } from "./articles/suujikat-ai-daily-2026-05-13";
 import { suujikatAiDaily20260514 } from "./articles/suujikat-ai-daily-2026-05-14";
+import { suujikatAiDaily20260515 } from "./articles/suujikat-ai-daily-2026-05-15";
 import { marathonFirstYear } from "./articles/marathon-first-year";
 
 export const categories = ["All", "AI", "Design", "Code", "Product", "Notes", "Projects"];
 
 export const posts: BlogArticle[] = [
+  suujikatAiDaily20260515,
   suujikatAiDaily20260514,
   marathonFirstYear,
   suujikatAiDaily20260513,
